@@ -100,9 +100,11 @@ class App extends Component {
     try {
       const response = await fetch("https://api.clarifai.com/v2/models/face-detection/outputs", returnClarifaiRequest(this.state.input));
       let results = await response.json();
+      console.log(response);
       if (results) {
-        fetch('http://localhost:8080/image', {
-          method: 'get',
+        // console.log(this.state.user.id);
+        fetch('http://127.0.0.1:8080/image', {
+          method: 'put',
           headers: { 'Content-Type': 'application//json' },
           body: JSON.stringify({
             id: this.state.user.id
